@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { font-family: Arial, sans-serif; }
+        header, footer { text-align: center; padding: 1em; background: #333; color: #fff; }
+        main { padding: 1em; }
+        .weather-widget { margin: 1em 0; padding: 1em; border: 1px solid #ccc; }
+        .weather-chart { width: 100%; height: 300px; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Weather Dashboard</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="news.html">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="social.html">Social Media</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="tmdb.html">Movies</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="joke.html">Jokes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="covid.html">COVID-19 Stats</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div id="currentDateTime" class="text-center mb-4"></div> <!-- Date and time display -->
+            
+        <!-- Select Search Bar -->
+        <div class="form-group">
+            <label for="locationSelect">Select Location:</label>
+            <select id="locationSelect" class="form-control">
+                <option value="alorSetar">Alor Setar</option>
+                <option value="jitra">Jitra</option>
+                <option value="kulim">Kulim</option>
+                <option value="pendang">Pendang</option>
+                <option value="pokokSena">Pokok Sena</option>
+                <option value="serdang">Serdang</option>
+                <option value="kualaKedah">Kuala Kedah</option>
+                <option value="sungaiPetani">Sungai Petani</option>
+                <option value="kuah">Kuah</option>
+                <option value="yan">Yan</option>
+                <option value="gurun">Gurun</option>
+                <option value="changlun">Changlun</option>
+                <option value="bedong">Bedong</option>
+                <option value="kodiang">Kodiang</option>
+                <!-- Add more options for each location -->
+            </select>
+        </div>
+        
+            
+            <div class="row">
+                <div class="col-lg-6">
+                    <div id="weather-alorSetar" class="weather-widget mt-5">Loading weather for Alor Setar...</div>
+                    <canvas id="chart-alorSetar" class="weather-chart"></canvas>
+                </div>
+                <div class="col-lg-6">
+                    <div id="weather-jitra" class="weather-widget mt-5">Loading weather for Jitra...</div>
+                    <canvas id="chart-jitra" class="weather-chart"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div id="weather-kulim" class="weather-widget mt-5">Loading weather for Kulim...</div>
+                    <canvas id="chart-kulim" class="weather-chart"></canvas>
+                </div>
+                <div class="col-lg-6">
+                    <div id="weather-pendang" class="weather-widget mt-5">Loading weather for Pendang...</div>
+                    <canvas id="chart-pendang" class="weather-chart"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div id="weather-kualaKedah" class="weather-widget mt-5">Loading weather for Kuala Kedah...</div>
+                    <canvas id="chart-kualaKedah" class="weather-chart"></canvas>
+                </div>
+                <div class="col-lg-6">
+                    <div id="weather-sungaiPetani" class="weather-widget mt-5">Loading weather for Sungai Petani...</div>
+                    <canvas id="chart-sungaiPetani" class="weather-chart"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div id="weather-gurun" class="weather-widget mt-5">Loading weather for Gurun...</div>
+                    <canvas id="chart-gurun" class="weather-chart"></canvas>
+                </div>
+                <div class="col-lg-6">
+                    <div id="weather-changlun" class="weather-widget mt-5">Loading weather for Changlun...</div>
+                    <canvas id="chart-changlun" class="weather-chart"></canvas>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div id="weather-bedong" class="weather-widget mt-5">Loading weather for Bedong...</div>
+                    <canvas id="chart-bedong" class="weather-chart"></canvas>
+                </div>
+                <div class="col-lg-6">
+                    <div id="weather-kodiang" class="weather-widget mt-5">Loading weather for Kodiang...</div>
+                    <canvas id="chart-kodiang" class="weather-chart"></canvas>
+                </div>        
+            </div>           
+        </div>
+    </main>
+    <footer class="mt-5 py-3 bg-dark text-white">
+        <div class="container text-center">
+            <p>&copy; 2024 Your App Name</p>
+        </div>
+    </footer>
+
+    <!-- External Libraries: jQuery, Chart.js, Moment.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <!-- JavaScript for Weather Dashboard -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const weatherApiKey = 'bc438640405e0116c32119682e1d1001'; // Your Weather API key
+
+            // Display current date and time
+            const currentDateTime = document.getElementById('currentDateTime');
+            currentDateTime.textContent = moment().format('LLLL');
+
+            const locations = [
+    { city: 'Alor Setar', id: 'alorSetar' },
+    { city: 'Jitra', id: 'jitra' },
+    { city: 'Kulim', id: 'kulim' },
+    { city: 'Pendang', id: 'pendang' },
+    { city: 'Kuala Kedah', id: 'kualaKedah' },
+    { city: 'Sungai Petani', id: 'sungaiPetani' },
+    { city: 'Gurun', id: 'gurun' },
+    { city: 'Changlun', id: 'changlun' },
+    { city: 'Bedong', id: 'bedong' },
+    { city: 'Kodiang', id: 'kodiang' }
+    // Add more locations as needed
+];
+
+const locationSelect = document.getElementById('locationSelect');
+
+            locations.forEach(location => {
+                fetchWeatherData(weatherApiKey, location.city, 'MY', location.id);
+            });
+
+            // Function to fetch weather data
+            function fetchWeatherData(apiKey, city, country, elementId) {
+                const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}`;
+                fetch(apiUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        const weatherDiv = document.getElementById(`weather-${elementId}`);
+                        const temp = (data.main.temp - 273.15).toFixed(1);
+                        const weather = data.weather[0].description;
+                        const humidity = data.main.humidity;
+                        const windSpeed = data.wind.speed;
+
+                        // Function to fetch weather data
+function fetchWeatherData(apiKey, city, country, elementId) {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${apiKey}`;
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const weatherDiv = document.getElementById(`weather-${elementId}`);
+            const temp = (data.main.temp - 273.15).toFixed(1);
+            const weather = data.weather[0].description;
+            const humidity = data.main.humidity;
+            const windSpeed = data.wind.speed;
+            const rainChance = data.pop * 100;
+
+            // Update weather widget content
+            weatherDiv.innerHTML = `
+                <h5>${city}</h5>
+                <p><strong>Temperature:</strong> ${temp}°C</p>
+                <p><strong>Weather:</strong> ${weather}</p>
+                <p><strong>Humidity:</strong> ${humidity}%</p>
+                <p><strong>Wind Speed:</strong> ${windSpeed} m/s</p>
+                <p><strong>Rain Chance:</strong> ${rainChance}%</p>
+            `;
+
+            // Call function to create chart
+            createWeatherChart(elementId, temp);
+
+            // Check rain chance and suggest action
+            if (rainChance > 50) {
+                weatherDiv.innerHTML += `<p><strong>Bring an umbrella!</strong></p>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching weather data:', error);
+            const weatherDiv = document.getElementById(`weather-${elementId}`);
+            weatherDiv.innerHTML = `<p>Error fetching weather data for ${city}</p>`;
+        });
+}
+
+                        // Update weather widget content
+                        weatherDiv.innerHTML = `
+                            <h5>${city}</h5>
+                            <p><strong>Temperature:</strong> ${temp}°C</p>
+                            <p><strong>Weather:</strong> ${weather}</p>
+                            <p><strong>Humidity:</strong> ${humidity}%</p>
+                            <p><strong>Wind Speed:</strong> ${windSpeed} m/s</p>
+                        `;
+
+                        // Call function to create chart
+                        createWeatherChart(elementId, temp);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching weather data:', error);
+                        const weatherDiv = document.getElementById(`weather-${elementId}`);
+                        weatherDiv.innerHTML = `<p>Error fetching weather data for ${city}</p>`;
+                    });
+            }
+
+            // Function to create weather chart
+            function createWeatherChart(elementId, temperature) {
+                const ctx = document.getElementById(`chart-${elementId}`).getContext('2d');
+                const chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [moment().subtract(6, 'days').format('DD/MM'), moment().subtract(5, 'days').format('DD/MM'), moment().subtract(4, 'days').format('DD/MM'), moment().subtract(3, 'days').format('DD/MM'), moment().subtract(2, 'days').format('DD/MM'), moment().subtract(1, 'days').format('DD/MM'), moment().format('DD/MM')],
+                        datasets: [{
+                            label: 'Temperature (°C)',
+                            data: [Math.random() * 30, Math.random() * 30, Math.random() * 30, Math.random() * 30, Math.random() * 30, Math.random() * 30, temperature],
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
